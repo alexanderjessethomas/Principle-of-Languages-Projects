@@ -1,0 +1,51 @@
+(define x '(1 2 3 4 5 6 7 8 9 10))
+(define y '(((a) b) (c d (d (f g) h)) i))
+(define z ' (a f c d f g e g h e g e e))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;Steamroller function 
+(define (steamroller x) ;define function
+  (cond ((null? x) '()) ;check if list is null
+        ((pair? x) ;check for pairs
+         (append (steamroller (car x)) (steamroller (cdr x)))) ;recursive calls 
+        (else (list x))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;ndelete
+(define (ndelete lst n)
+  (helper list n n)
+  )
+(define (helper lst n c)
+  (if (null? lst)
+      '()
+      (cond
+        [{> n (length lst)} lst]
+        [(< n 1) (append (list (car lst)) (helper (cdr lst) (- n1) c))]
+        [(= n 1) (append (car lst)) (ndelete (cdr lst) current)]
+        )
+      )
+  )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;deep memeber
+
+(define deep-member?
+  (lambda (x lst)
+    (or (equal? x lst)
+        (and (pair? lst)
+             (or (deep-member? x (car lst))
+                 (deep-member? x (cdr lst)))))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;mymergesort
+(define mymergesort
+  (lambda (alist)
+    (if (null? (cdr alist)) alist
+        (let ((splits (splitter alist)))
+          (merge (mymergesort (car splits)) (mymergesort (cadr splits)))))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;splitter
+
+

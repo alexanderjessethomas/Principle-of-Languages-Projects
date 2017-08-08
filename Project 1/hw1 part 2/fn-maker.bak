@@ -1,0 +1,18 @@
+;steamroller
+(define (steamroller x) ;define function
+  (cond ((null? x) '()) ;check if list is null
+        ((pair? x) ;check for pairs
+         (append (steamroller (car x)) (steamroller (cdr x)))) ;recursive calls 
+        (else (list x))))
+;fn-maker
+(define (fn-maker fn-spec)
+  (cond
+    [(null? fn-spec) '()]
+    [else (eval (list 'define (steamroller(list (car(cdr(car fn-spec)))
+                                                (if (> (length (cdr (car (cdr fn-spec)))) 2)
+                                    (cdr (car (cdr fn-spec)))
+                                   (car (cdr (car (cdr fn-spec)))))))
+           (car (cdr (car (cddr fn-spec))))))])
+  )
+                                                
+                                          
